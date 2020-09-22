@@ -28,4 +28,4 @@ To get more help on the Angular CLI use `ng help` or go check out the [Angular C
 
 ## Install Firebase
 
-Run `npm i g firebase-tools` in a separate terminal
+Run `npm i g firebase-tools -f` in a separate terminal, where g for install globally and -f for install forcely because installing -f didn't work for me.
