@@ -119,6 +119,10 @@
           }
         }
       }
-    }},
-  "defaultProject": "eevokclothing"
+    }
+  },
+  "defaultProject": "eevokclothing",
+  "cli": {
+    "analytics": "1a16cfb7-9cd7-44e6-81ed-0a3082c73e5f"
+  }
 }
