@@ -12,6 +12,7 @@ import 'rxjs/add/operator/take';
 export class ProductFormComponent implements OnInit {
   categories$;
   product: any = {};
+  id;
 
   constructor(
     private router: Router,
@@ -21,13 +22,27 @@ export class ProductFormComponent implements OnInit {
     this.categories$ = categoryService.getCategories();
 
     let id = this.route.snapshot.paramMap.get('id');
+    this.id = id;
     console.log(id);
-    if (id) this.productService.get(id).subscribe(p => {this.product = p});
-    console.log(Object.keys(this.product).length);
+    if (id) this.productService.get(id).subscribe(p => { this.product = p });
   }
 
   save(product) {
-    this.productService.create(product);
+
+    if (this.id) {
+      this.productService.update(this.id, this.product);
+    }
+    else {
+      this.productService.create(product);
+    }
+
+    this.router.navigate(['/admin/products']);
+  }
+
+  delete() {
+    if (!confirm('Are you sure you want to delete this product?')) return;
+    
+    this.productService.delete(this.id);
     this.router.navigate(['/admin/products']);
   }
 
