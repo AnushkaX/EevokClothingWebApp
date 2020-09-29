@@ -11,7 +11,7 @@ import 'rxjs/add/operator/take';
 })
 export class ProductFormComponent implements OnInit {
   categories$;
-  product = {};
+  product: any = {};
 
   constructor(
     private router: Router,
@@ -21,7 +21,9 @@ export class ProductFormComponent implements OnInit {
     this.categories$ = categoryService.getCategories();
 
     let id = this.route.snapshot.paramMap.get('id');
-    if (id) this.productService.get(id).take(1).subscribe(p => this.product = p);
+    console.log(id);
+    if (id) this.productService.get(id).subscribe(p => {this.product = p});
+    console.log(Object.keys(this.product).length);
   }
 
   save(product) {

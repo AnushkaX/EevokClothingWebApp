@@ -9,6 +9,7 @@ import { map } from 'rxjs/operators';
 export class ProductService {
   product: AngularFireList<any>;
   products: Observable<any[]>;
+  prod: any;
 
   constructor(private db: AngularFireDatabase) { }
 
@@ -26,7 +27,11 @@ export class ProductService {
     return this.products;
   }
 
-  get(productId) {
-    return this.db.object('/product/'+productId).valueChanges();
+  get(id) {
+    this.prod = this.db.object('/product/' + id).valueChanges();
+    //this.db.object('/product/' + productId).snapshotChanges().pipe(
+    //  map(a => ({ key: a.payload.key, ...(a.payload.val() as {}) }))
+    //);
+  return this.prod;
   }
 }
