@@ -1,3 +1,4 @@
+<h1>Add a new Product</h1>
 <div class="row">
     <div class="col-md-6">
         <form #f="ngForm" (ngSubmit)="save(f.value)">
@@ -50,7 +51,7 @@
             <img [src]="imageUrl.value" class="card-img-top">
             <div class="card-body">
                 <h4 class="card-title">{{ product.title }}</h4>
-                <p class="card-text"> {{ product.price | currency }} </p>
+                <p class="card-text"> {{ product.price | currency: 'Rs. ' : true }} </p>
             </div>
         </div>
     </div>
