@@ -46,6 +46,15 @@ export class ProductFormComponent implements OnInit {
     this.router.navigate(['/admin/products']);
   }
 
+  clear() {
+    if (!confirm('Clear the fields?')) return;
+
+    this.product.title ='';
+    this.product.price ='';
+    this.product.category ='';
+    this.product.imageUrl ='';
+  }
+
   ngOnInit(): void {
   }
 

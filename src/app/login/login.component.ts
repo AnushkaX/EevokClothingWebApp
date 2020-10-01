@@ -1,3 +1,4 @@
+import { Router } from '@angular/router';
 import { AngularFireAuth } from 'angularfire2/auth';
 import { AuthService } from './../auth.service';
 import { Component, OnInit } from '@angular/core';
@@ -9,7 +10,7 @@ import { Component, OnInit } from '@angular/core';
 })
 export class LoginComponent {
 
-  constructor(private auth: AuthService) { }
+  constructor(private auth: AuthService, private router: Router) { }
   
   login() {
     this.auth.login();

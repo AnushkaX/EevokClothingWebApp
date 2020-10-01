@@ -1,3 +1,5 @@
+<h1 *ngIf="!product.title">Add a new Product</h1>
+<h1 *ngIf="product.title">Update Product</h1>
 <div class="row">
     <div class="col-md-6">
         <form #f="ngForm" (ngSubmit)="save(f.value)">
@@ -24,7 +26,7 @@
                 <label for="category">Category</label>
                 <select #category="ngModel" [(ngModel)]="product.category" name="category" id="category" class="form-control" required>
                     <option value=""></option>
-                    <option *ngFor="let c of categories$ | async" [value]="c.name">
+                    <option *ngFor="let c of categories$ | async" [value]="c.key">
                         {{ c.name }}
                     </option>
                 </select>
@@ -41,8 +43,9 @@
                     <div *ngIf="imageUrl.errors.url">Invalid URL!</div>
                 </div>
             </div>
-            <button class="btn btn-primary">Save</button>
-            <button type="button" (click)="delete()" class="btn btn-danger">Delete</button>
+            <button style="margin:5px;" class="btn btn-primary">Save</button>
+            <button type="button" style="margin:5px;" *ngIf="id" (click)="delete()" class="btn btn-danger">Delete</button>
+            <button type="button" style="margin:5px;" *ngIf="!id" (click)="clear()" class="btn btn-danger">Clear</button>
         </form>
     </div>
     <div class="col-md-6">
@@ -50,7 +53,7 @@
             <img [src]="imageUrl.value" class="card-img-top">
             <div class="card-body">
                 <h4 class="card-title">{{ product.title }}</h4>
-                <p class="card-text"> {{ product.price | currency }} </p>
+                <p class="card-text"> {{ product.price | currency: 'Rs. ' : true }} </p>
             </div>
         </div>
     </div>
