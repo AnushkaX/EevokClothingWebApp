@@ -2,11 +2,11 @@
     <a routerLink="/admin/products/new" class="btn btn-primary">New Product</a>
 </p>
 <p>
-    <input 
-        #query
-        (keyup)="filter(query.value)" 
-        type="text" class="form-control" placeholder="Search..">
+    <input #query (keyup)="filter(query.value)" type="text" class="form-control" placeholder="Search..">
 </p>
+
+
+
 <table class="table">
     <thead>
         <tr>
@@ -25,3 +25,4 @@
         </tr>
     </tbody>
 </table>
+
