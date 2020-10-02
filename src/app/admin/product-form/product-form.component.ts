@@ -2,7 +2,6 @@ import { ProductService } from './../../product.service';
 import { CategoryService } from './../../category.service';
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
-import 'rxjs/add/operator/take';
 
 @Component({
   selector: 'app-product-form',
