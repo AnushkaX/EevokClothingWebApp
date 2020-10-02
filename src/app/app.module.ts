@@ -12,7 +12,9 @@ import { AngularFireModule } from 'angularfire2';
 import { AngularFireDatabaseModule } from 'angularfire2/database';
 import { AngularFireAuthModule } from 'angularfire2/auth';
 import { CustomFormsModule } from 'ng2-validation';
-//import { DataTableModule } from 'angular-2-data-table';
+
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { CarouselComponent, CarouselModule } from 'ngx-owl-carousel-o';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -31,6 +33,7 @@ import { ProductFormComponent } from './admin/product-form/product-form.componen
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { ProductFilterComponent } from './products/product-filter/product-filter.component';
 import { ProductCardComponent } from './product-card/product-card.component';
+import { ImageCarouselComponent } from './products/image-carousel/image-carousel.component';
 
 @NgModule({
   declarations: [
@@ -47,7 +50,8 @@ import { ProductCardComponent } from './product-card/product-card.component';
     LoginComponent,
     ProductFormComponent,
     ProductFilterComponent,
-    ProductCardComponent
+    ProductCardComponent,
+    ImageCarouselComponent
   ],
   imports: [
     BrowserModule,
@@ -74,7 +78,8 @@ import { ProductCardComponent } from './product-card/product-card.component';
     NgbModule,
     FormsModule,
     CustomFormsModule,
-    //DataTableModule
+    BrowserAnimationsModule,
+    CarouselModule 
   ],
   providers: [
     AuthService,
