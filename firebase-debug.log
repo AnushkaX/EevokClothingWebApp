@@ -1,0 +1,13 @@
+[debug] [2020-10-02T07:21:31.534Z] ----------------------------------------------------------------------
+[debug] [2020-10-02T07:21:31.537Z] Command:       C:\Program Files\nodejs\node.exe C:\Users\AnushkaX\AppData\Roaming\npm\node_modules\firebase-tools\lib\bin\firebase.js deploy
+[debug] [2020-10-02T07:21:31.537Z] CLI Version:   8.11.2
+[debug] [2020-10-02T07:21:31.537Z] Platform:      win32
+[debug] [2020-10-02T07:21:31.537Z] Node Version:  v14.7.0
+[debug] [2020-10-02T07:21:31.538Z] Time:          Fri Oct 02 2020 12:51:31 GMT+0530 (India Standard Time)
+[debug] [2020-10-02T07:21:31.538Z] ----------------------------------------------------------------------
+[debug] [2020-10-02T07:21:31.538Z] 
+[debug] [2020-10-02T07:21:31.544Z] > command requires scopes: ["email","openid","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","https://www.googleapis.com/auth/cloud-platform"]
+[debug] [2020-10-02T07:21:31.544Z] > authorizing via signed-in user
+[debug] [2020-10-02T07:21:31.544Z] [iam] checking project eevokclothingwebapp for permissions ["cloudconfig.configs.get","cloudconfig.configs.update","cloudfunctions.functions.create","cloudfunctions.functions.delete","cloudfunctions.functions.get","cloudfunctions.functions.list","cloudfunctions.functions.update","cloudfunctions.operations.get","datastore.indexes.create","datastore.indexes.delete","datastore.indexes.list","datastore.indexes.update","firebase.projects.get","firebasedatabase.instances.update","firebasehosting.sites.update","firebaserules.releases.create","firebaserules.releases.update","firebaserules.rulesets.create"]
+[debug] [2020-10-02T07:21:31.547Z] >>> HTTP REQUEST POST https://cloudresourcemanager.googleapis.com/v1/projects/eevokclothingwebapp:testIamPermissions  
+ {"permissions":["cloudconfig.configs.get","cloudconfig.configs.update","cloudfunctions.functions.create","cloudfunctions.functions.delete","cloudfunctions.functions.get","cloudfunctions.functions.list","cloudfunctions.functions.update","cloudfunctions.operations.get","datastore.indexes.create","datastore.indexes.delete","datastore.indexes.list","datastore.indexes.update","firebase.projects.get","firebasedatabase.instances.update","firebasehosting.sites.update","firebaserules.releases.create","firebaserules.releases.update","firebaserules.rulesets.create"]}
