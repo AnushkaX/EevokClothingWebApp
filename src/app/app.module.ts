@@ -1,3 +1,4 @@
+import { ShoppingCartService } from './shopping-cart.service';
 import { ProductService } from './product.service';
 import { CategoryService } from './category.service';
 import { AdminAuthGuard as AdminAuthGuard } from './admin-auth-guard.service';
@@ -13,8 +14,8 @@ import { AngularFireDatabaseModule } from 'angularfire2/database';
 import { AngularFireAuthModule } from 'angularfire2/auth';
 import { CustomFormsModule } from 'ng2-validation';
 
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { CarouselComponent, CarouselModule } from 'ngx-owl-carousel-o';
+
+import { CarouselModule } from 'ngx-owl-carousel-o';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -78,7 +79,6 @@ import { ImageCarouselComponent } from './products/image-carousel/image-carousel
     NgbModule,
     FormsModule,
     CustomFormsModule,
-    BrowserAnimationsModule,
     CarouselModule 
   ],
   providers: [
@@ -87,7 +87,8 @@ import { ImageCarouselComponent } from './products/image-carousel/image-carousel
     UserService,
     AdminAuthGuard,
     CategoryService,
-    ProductService
+    ProductService,
+    ShoppingCartService
   ],
   bootstrap: [AppComponent]
 })
