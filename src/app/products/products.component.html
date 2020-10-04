@@ -1,3 +1,6 @@
+<!-- <image-carousel>
+
+</image-carousel> -->
 <div class="row">
     <div class="col-3">
         <product-filter [category]="category"></product-filter>
@@ -6,7 +9,7 @@
         <div class="row">
             <ng-container *ngFor="let p of filteredProducts ; let i = index">
                 <div class="col">
-                    <product-card [product]="p"></product-card>
+                    <product-card [product]="p" [shopping-cart]="cart"></product-card>
                 </div>
                 <div *ngIf="(i + 1) % 3 === 0" class="w-100"></div>
             </ng-container>

@@ -6,5 +6,6 @@
     </div>
     <div class="card-footer">
         <button *ngIf="showActions" (click)="addToCart(product)" class=" btn btn-primary btn-block ">Add to Cart</button>
+        <div>{{ getQuantity() }}</div>
     </div>
 </div>
