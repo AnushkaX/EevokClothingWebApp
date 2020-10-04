@@ -5,3 +5,11 @@
 .card {
     margin-bottom: 30px;
 }
+
+#btn_add {
+    background-color: olivedrab;
+}
+
+#btn_plus_min {
+    background-color: peru;
+}
