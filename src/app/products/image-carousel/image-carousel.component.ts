@@ -15,10 +15,10 @@ export class ImageCarouselComponent implements OnInit {
     pullDrag: false,
     dots: true,
     navSpeed: 700,
-    navText: ['Previous', 'Next'],
-    autoplay:true,
+    autoplay: true,
     autoplayTimeout:5000,
-    smartSpeed: 1500,
+    autoplaySpeed:800,
+    navText: ['Previous', 'Next'],
     responsive: {
       0: {
         items: 1 
@@ -35,8 +35,24 @@ export class ImageCarouselComponent implements OnInit {
     },
     nav: false
   }
-  
-  constructor( ) { }
+
+  images = [
+    {
+      text: "Everfresh Flowers",
+      image: "https://nilsonline.lk/image/cache/catalog/nils/product/mainslideORGq2-2880x1180.jpg"
+    },
+    {
+      text: "Festive Deer",
+      image: "https://nilsonline.lk/image/cache/catalog/nils/product/mainslideORddG2-2880x1180.jpg"
+    },
+    {
+      text: "Morning Greens",
+      image: "https://nilsonline.lk/image/cache/catalog/nils/product/WEB0410200-2880x1180.jpg"
+    }
+    
+  ]
+
+  constructor() { }
 
   ngOnInit(): void {
   }
