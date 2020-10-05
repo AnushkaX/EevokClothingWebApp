@@ -15,6 +15,7 @@ import { AngularFireAuthModule } from 'angularfire2/auth';
 import { CustomFormsModule } from 'ng2-validation';
 
 
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { CarouselModule } from 'ngx-owl-carousel-o';
 
 import { AppRoutingModule } from './app-routing.module';
@@ -79,7 +80,8 @@ import { ImageCarouselComponent } from './products/image-carousel/image-carousel
     NgbModule,
     FormsModule,
     CustomFormsModule,
-    CarouselModule 
+    CarouselModule,
+    BrowserAnimationsModule
   ],
   providers: [
     AuthService,
