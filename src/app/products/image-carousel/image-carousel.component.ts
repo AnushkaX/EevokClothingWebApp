@@ -36,6 +36,8 @@ export class ImageCarouselComponent implements OnInit {
     nav: false
   }
 
+// Change the images
+
   images = [
     {
       text: "Everfresh Flowers",
