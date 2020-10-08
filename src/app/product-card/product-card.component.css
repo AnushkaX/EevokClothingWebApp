@@ -13,3 +13,7 @@
 #btn_plus_min {
     background-color: olivedrab;
 }
+
+.card-footer button {
+    cursor: pointer;
+}

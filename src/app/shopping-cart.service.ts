@@ -1,8 +1,9 @@
+import { ShoppingCart } from './models/shopping-cart';
 import { Product } from './models/product';
 import { AngularFireDatabase } from 'angularfire2/database';
 import { Injectable } from '@angular/core';
 import 'rxjs/add/operator/take';
-import { BehaviorSubject } from 'rxjs';
+import { BehaviorSubject, Observable } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -20,7 +21,7 @@ export class ShoppingCartService {
     });
   }
 
-  async getCart() {
+  async getCart(): Promise<Observable<any>> {
     let cartId = await this.getOrCreateCartId();
     return this.db.object('/shopping-carts/' + cartId).valueChanges();
   }
@@ -47,6 +48,18 @@ export class ShoppingCartService {
       else this.item = this.db.object('/shopping-carts/' + cartId + '/items/' + product.key).set({ product: product, quantity: 1 });
     });
 
+  }
+
+  async removeFromCart(product: Product) {
+    let cartId = await this.getOrCreateCartId();
+    this.item = this.db.object('/shopping-carts/' + cartId + '/items/' + product.key).valueChanges();
+
+    this.item.take(1).subscribe(item => {
+      if (item) {
+        this.item = this.db.object('/shopping-carts/' + cartId + '/items/' + product.key).update({ product: product, quantity: item.quantity - 1 });
+      }
+      else this.item = this.db.object('/shopping-carts/' + cartId + '/items/' + product.key).set({ product: product, quantity: 1 });
+    });
   }
 
 }
