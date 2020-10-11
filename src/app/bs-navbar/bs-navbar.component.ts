@@ -23,7 +23,7 @@ export class BsNavbarComponent implements OnInit {
     cart$.subscribe(cart => {
       this.sCIC = 0;
       for ( let productId in cart.items ) {
-        this.sCIC += cart.items[productId].quantity
+        this.sCIC += cart.items[productId].quantity;
       }  
     })
   }
