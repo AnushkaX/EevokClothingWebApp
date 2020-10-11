@@ -36,6 +36,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { ProductFilterComponent } from './products/product-filter/product-filter.component';
 import { ProductCardComponent } from './product-card/product-card.component';
 import { ImageCarouselComponent } from './products/image-carousel/image-carousel.component';
+import { ProductQuantityComponent } from './product-quantity/product-quantity.component';
 
 @NgModule({
   declarations: [
@@ -53,7 +54,8 @@ import { ImageCarouselComponent } from './products/image-carousel/image-carousel
     ProductFormComponent,
     ProductFilterComponent,
     ProductCardComponent,
-    ImageCarouselComponent
+    ImageCarouselComponent,
+    ProductQuantityComponent
   ],
   imports: [
     BrowserModule,

@@ -22,8 +22,8 @@ export class BsNavbarComponent implements OnInit {
     let cart$ = await this.shoppingCartService.getCart();
     cart$.subscribe(cart => {
       this.sCIC = 0;
-      for ( let productId in cart.items ) {
-        this.sCIC += cart.items[productId].quantity;
+      for ( let productId in cart.itemsMap ) {
+        this.sCIC += cart.itemsMap[productId].quantity;
       }  
     })
   }
