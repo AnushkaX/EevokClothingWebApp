@@ -29,7 +29,7 @@ export class ShoppingCartService {
       map(x => new ShoppingCart(x['items'])) 
       );
     // .map(x => new ShoppingCart(x.items));
-    
+    //fucked
     
   }
 
