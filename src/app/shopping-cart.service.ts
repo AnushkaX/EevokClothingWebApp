@@ -1,3 +1,4 @@
+import { async } from '@angular/core/testing';
 import { Observable } from 'rxjs/observable';
 import { ShoppingCart } from './models/shopping-cart';
 import { Product } from './models/product';
@@ -26,11 +27,11 @@ export class ShoppingCartService {
   async getCart(): Promise<Observable<ShoppingCart>> {
     let cartId = await this.getOrCreateCartId();
     return this.db.object('/shopping-carts/' + cartId).valueChanges().pipe(
-      map(x => new ShoppingCart(x['items'])) 
-      );
+      map(x => new ShoppingCart(x['items']))
+    );
     // .map(x => new ShoppingCart(x.items));
     //fucked
-    
+
   }
 
   private async getOrCreateCartId(): Promise<string> {
@@ -45,27 +46,32 @@ export class ShoppingCartService {
   }
 
   async addToCart(product: Product) {
-    let cartId = await this.getOrCreateCartId();
-    this.item = this.db.object('/shopping-carts/' + cartId + '/items/' + product.key).valueChanges();
-
-    this.item.take(1).subscribe(item => {
-      if (item) {
-        this.item = this.db.object('/shopping-carts/' + cartId + '/items/' + product.key).update({ product: product, quantity: item.quantity + 1 });
-      }
-      else this.item = this.db.object('/shopping-carts/' + cartId + '/items/' + product.key).set({ product: product, quantity: 1 });
-    });
-
+    this.updateItem(product, 1);
   }
 
   async removeFromCart(product: Product) {
+    this.updateItem(product, -1);
+  }
+
+  async updateItem(product: Product, change: number) {
     let cartId = await this.getOrCreateCartId();
     this.item = this.db.object('/shopping-carts/' + cartId + '/items/' + product.key).valueChanges();
 
     this.item.take(1).subscribe(item => {
       if (item) {
-        this.item = this.db.object('/shopping-carts/' + cartId + '/items/' + product.key).update({ product: product, quantity: item.quantity - 1 });
+        this.item = this.db.object('/shopping-carts/' + cartId + '/items/' + product.key).update({
+          title: product.title,
+          imageUrl: product.imageUrl,
+          price: product.price,
+          quantity: item.quantity + change
+        });
       }
-      else this.item = this.db.object('/shopping-carts/' + cartId + '/items/' + product.key).set({ product: product, quantity: 1 });
+      else this.item = this.db.object('/shopping-carts/' + cartId + '/items/' + product.key).set({
+        title: product.title,
+        imageUrl: product.imageUrl,
+        price: product.price,
+        quantity: 1
+      });
     });
   }
 
