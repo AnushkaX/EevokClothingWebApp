@@ -70,10 +70,11 @@
         <h4>Cart
           <span class="price" style="color:black">
             <i class="fa fa-shopping-cart"></i>
-            <b>4</b>
+            <b>{{sCIC}}</b>
           </span>
         </h4>
-        <tr *ngFor="let item of cart.items">
+        <table class="table">
+          <tr *ngFor="let item of cart.items">
             <td>
                 {{ item.title }}
             </td>
@@ -81,8 +82,9 @@
                 {{ item.totalPrice | currency: 'Rs. ' : true }}
             </td>
         </tr>
+        </table>
         <hr>
-        <p>Total <span class="price" style="color:black"><b>$30</b></span></p>
+        <p>Total <span class="price" style="color:black"><b>{{ cart.totalPrice | currency: 'Rs. ' : true  }}</b></span></p>
       </div>
     </div>
   </div>

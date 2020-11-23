@@ -15,6 +15,12 @@ export class CheckOutComponent implements OnInit {
 
   async ngOnInit() {
     this.cart$ = await this.shoppingCartService.getCart();
+    this.cart$.subscribe(cart => {
+      this.sCIC = 0;
+      for ( let productId in cart.itemsMap ) {
+        this.sCIC += cart.itemsMap[productId].quantity;
+      }  
+    })
     
   }
 
