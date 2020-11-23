@@ -17,3 +17,16 @@
 .card-footer button {
     cursor: pointer;
 }
+
+.btn {
+    background-color: #f4511e;
+    border: none;
+    color: white;
+    text-align: center;
+    font-size: 20px;
+    margin: 4px 2px;
+    opacity: 0.6;
+    transition: 0.3s;
+  }
+  
+.btn:hover {opacity: 1}

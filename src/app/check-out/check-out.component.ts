@@ -10,6 +10,11 @@ export class CheckOutComponent implements OnInit {
 
   cart$;
   sCIC: number;
+  shipping: any = {}; 
+  
+  placeOrder() {
+    console.log(this.shipping);
+  }  
 
   constructor(private shoppingCartService: ShoppingCartService) { }
 
