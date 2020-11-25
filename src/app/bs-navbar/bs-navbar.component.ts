@@ -13,10 +13,8 @@ export class BsNavbarComponent implements OnInit {
   appUser: AppUser;
   sCIC: number;
 
-  constructor(public auth: AuthService, private shoppingCartService: ShoppingCartService) { 
-    
-    
-   }
+  constructor(public auth: AuthService, private shoppingCartService: ShoppingCartService) {}
+
   async ngOnInit() {
     this.auth.appUser$.subscribe(appUser => this.appUser = appUser);
     let cart$ = await this.shoppingCartService.getCart();
@@ -25,7 +23,7 @@ export class BsNavbarComponent implements OnInit {
       for ( let productId in cart.itemsMap ) {
         this.sCIC += cart.itemsMap[productId].quantity;
       }  
-    })
+    });
   }
 
   logout() {
