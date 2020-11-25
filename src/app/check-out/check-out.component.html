@@ -69,26 +69,6 @@
   </div>
 
   <div class="col-50">
-    <div class="container" *ngIf="cart$ | async as cart">
-      <h4>Cart
-        <span class="price" style="color:black">
-          <i class="fa fa-shopping-cart"></i>
-          <b>{{sCIC}}</b>
-        </span>
-      </h4>
-      <table class="table">
-        <tr *ngFor="let item of cart.items">
-          <td>
-            {{ item.title }}
-          </td>
-          <td class="text-right">
-            {{ item.totalPrice | currency: 'Rs. ' : true }}
-          </td>
-        </tr>
-      </table>
-      <hr>
-      <p>Total <span class="price" style="color:black"><b>{{ cart.totalPrice | currency: 'Rs. ' : true  }}</b></span>
-      </p>
-    </div>
+    <shopping-cart-summary [cart]="cart"></shopping-cart-summary>
   </div>
 </div>
