@@ -21,7 +21,6 @@ export class OrderService {
   }
 
   getOrderById(userId: string) {
-    console.log(userId);
     return this.db.list('/orders',ref => ref.orderByChild('userId').equalTo(userId)).valueChanges();
   }
 

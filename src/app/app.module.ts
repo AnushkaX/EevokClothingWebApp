@@ -40,6 +40,7 @@ import { ImageCarouselComponent } from './products/image-carousel/image-carousel
 import { ProductQuantityComponent } from './product-quantity/product-quantity.component';
 import { ShoppingCartSummaryComponent } from './shopping-cart-summary/shopping-cart-summary.component';
 import { ShippingFormComponent } from './shipping-form/shipping-form.component';
+import { ProductViewComponent } from './product-view/product-view.component';
 
 @NgModule({
   declarations: [
@@ -60,7 +61,8 @@ import { ShippingFormComponent } from './shipping-form/shipping-form.component';
     ImageCarouselComponent,
     ProductQuantityComponent,
     ShoppingCartSummaryComponent,
-    ShippingFormComponent
+    ShippingFormComponent,
+    ProductViewComponent
   ],
   imports: [
     BrowserModule,
@@ -73,6 +75,8 @@ import { ShippingFormComponent } from './shipping-form/shipping-form.component';
       { path: 'products', component: ProductsComponent },
       { path: 'shopping-cart', component: ShoppingCartComponent },
       { path: 'login', component: LoginComponent },
+      { path: 'product-view', component: ProductViewComponent },
+      { path: 'product-view/:id', component: ProductViewComponent },
 
       { path: 'check-out', component: CheckOutComponent, canActivate: [AuthGuard] },
       { path: 'order-success/:id', component: OrderSuccessComponent, canActivate: [AuthGuard] },

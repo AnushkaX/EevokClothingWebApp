@@ -8,7 +8,7 @@ import { ActivatedRoute, Router } from '@angular/router';
   templateUrl: './product-form.component.html',
   styleUrls: ['./product-form.component.css']
 })
-export class ProductFormComponent implements OnInit {
+export class ProductFormComponent {
   categories$;
   product: any = {};
   id;
@@ -18,12 +18,14 @@ export class ProductFormComponent implements OnInit {
     private route: ActivatedRoute,
     private categoryService: CategoryService,
     private productService: ProductService) {
+
     this.categories$ = categoryService.getCategories();
 
     let id = this.route.snapshot.paramMap.get('id');
     this.id = id;
     console.log(id);
     if (id) this.productService.get(id).subscribe(p => { this.product = p });
+    
   }
 
   save(product) {
@@ -52,9 +54,6 @@ export class ProductFormComponent implements OnInit {
     this.product.price ='';
     this.product.category ='';
     this.product.imageUrl ='';
-  }
-
-  ngOnInit(): void {
   }
 
 }
