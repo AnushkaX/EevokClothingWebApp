@@ -3,6 +3,7 @@
     <div class="card-body">
         <h5 class="card-title">{{ product.title }}</h5>
         <p class="card-text">{{ product.price | currency: 'Rs. ' : true }}</p>
+        <p class="card-text">{{ product.description }}</p>
     </div>
     <div *ngIf="showActions && shoppingCart" class="card-footer">
         <a id="btn_add" *ngIf="shoppingCart.getQuantity(product) === 0; else updateQuantity" 
