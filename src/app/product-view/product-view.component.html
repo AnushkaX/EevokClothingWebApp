@@ -1,4 +1,8 @@
-<div class="super_container">
+<!-- <link href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+<script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/js/bootstrap.min.js"></script>
+<script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
+
+<div class="super_container" *ngIf="cart$ | async as cart">
     <div class="single_product">
         <div class="container-fluid" style=" background-color: #fff; padding: 11px;">
             <div class="mom">
@@ -30,8 +34,36 @@
                                     </div>
                                 </div>
                             </div>
-                            <div class="col-xs-6"> <button type="button" class="btn btn-primary shop-button">Add to Cart</button> <button type="button" class="btn btn-success shop-button">Buy Now</button>
-                                <div class="product_fav"><i class="fas fa-heart"></i></div>
+                            <div *ngIf="showActions && cart" class="card-footer">
+                                <a id="btn_add" *ngIf="cart.getQuantity(product) === 0; else updateQuantity" 
+                                    class="btn btn-secondary btn-block"
+                                    (click)="addToCart()">Add to Cart</a>
+                                <ng-template #updateQuantity>
+                                    <product-quantity [product]="product" [shopping-cart]="shoppingCart"></product-quantity>
+                                </ng-template>
+                                <div class="bla">
+                                    <product-view [product]="product" [shopping-cart]="shoppingCart"></product-view>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="container">
+                            <h2>Bootstrap Counter Field</h2>
+                            <div class="row">
+                                <div>
+                                    <div class="input-group">
+                                        <span class="input-group-btn">
+                                      <button type="button" class="btn btn-default btn-number" disabled="disabled" data-type="minus" data-field="quant[1]">
+                                          <span class="glyphicon glyphicon-minus"></span>
+                                        </button>
+                                        </span>
+                                        <input type="text" name="quant[1]" class="form-control input-number" value="1" min="1" max="10">
+                                        <span class="input-group-btn">
+                                      <button type="button" class="btn btn-default btn-number" data-type="plus" data-field="quant[1]">
+                                          <span class="glyphicon glyphicon-plus"></span>
+                                        </button>
+                                        </span>
+                                    </div>
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -39,4 +71,87 @@
             </div>
         </div>
     </div>
-</div>
+</div> -->
+<!-- <link href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+<script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/js/bootstrap.min.js"></script>
+<script src="//code.jquery.com/jquery-1.11.1.min.js"></script> -->
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <title>eCommerce Product Detail</title>
+    <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans:400,700" rel="stylesheet">
+
+</head>
+
+<body>
+
+    <div class="container">
+        <div class="card">
+            <div class="container-fliud">
+                <div class="wrapper row containerx">
+                    <div class="preview col-md-6">
+                        <div class="preview-pic tab-content">
+                            <div class="tab-pane active card" id="pic-1"><img [src]="product.imageUrl" /></div>
+                            <div class="tab-pane" id="pic-2"><img src="http://placekitten.com/400/252" /></div>
+                            <div class="tab-pane" id="pic-3"><img src="http://placekitten.com/400/252" /></div>
+                            <div class="tab-pane" id="pic-4"><img src="http://placekitten.com/400/252" /></div>
+                            <div class="tab-pane" id="pic-5"><img src="http://placekitten.com/400/252" /></div>
+                        </div>
+                        <ul class="preview-thumbnail nav nav-tabs">
+                            <!-- <li class="active"><a data-target="#pic-1" data-toggle="tab"><img
+                                        src="http://placekitten.com/200/126" /></a></li>
+                            <li><a data-target="#pic-2" data-toggle="tab"><img
+                                        src="http://placekitten.com/200/126" /></a></li>
+                            <li><a data-target="#pic-3" data-toggle="tab"><img
+                                        src="http://placekitten.com/200/126" /></a></li>
+                            <li><a data-target="#pic-4" data-toggle="tab"><img
+                                        src="http://placekitten.com/200/126" /></a></li>
+                            <li><a data-target="#pic-5" data-toggle="tab"><img
+                                        src="http://placekitten.com/200/126" /></a></li> -->
+                        </ul>
+                    </div>
+                    <div class="details col-md-6">
+                        <h3 class="product-title">{{ product.title }}</h3>
+                        <p class="product-description">{{ product.description }}</p>
+                        <h4 class="price">Price: <span>{{ product.price | currency: 'Rs. ' : true }}</span></h4>
+                        <div class="action">
+                            <div class="form-group">
+                                <label for="exampleFormControlSelect1">Select Size</label>
+                                <select class="form-control" id="exampleFormControlSelect1">
+                                    <option>XS</option>
+                                    <option>S</option>
+                                    <option>M</option>
+                                    <option>L</option>
+                                    <option>XL</option>
+                                    <option>XXL</option>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label for="exampleFormControlSelect1">Select Quantity</label>
+                                <select class="form-control" id="exampleFormControlSelect1">
+                                    <option>1</option>
+                                    <option>2</option>
+                                    <option>3</option>
+                                    <option>4</option>
+                                    <option>5</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="action">
+                            <button class="btn add-to-cart btn btn-default" type="button">Add to cart</button>
+                            <button class="like btn btn-default" type="button"><span
+                                    class="fa fa-heart"></span></button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>
