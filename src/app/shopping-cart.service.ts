@@ -29,6 +29,10 @@ export class ShoppingCartService {
     this.updateItem(product, 1);
   }
 
+  async addToCart1(id: string, product: Product, qty: number) {
+    this.updateItem1(id, product, qty);
+  }
+
   async removeFromCart(product: Product) {
     this.updateItem(product, -1);
   }
@@ -57,6 +61,35 @@ export class ShoppingCartService {
         imageUrl: product.imageUrl,
         price: product.price,
         quantity: 1
+      });
+
+    });
+  }
+
+  async updateItem1(id: string, product: Product, change: number) {
+    let cartId = await this.getOrCreateCartId();
+    this.item = this.db.object('/shopping-carts/' + cartId + '/items/' + product.key).valueChanges();
+
+    this.item.take(1).subscribe(item => {
+      //console.log(item.quantity);
+      
+      if (item) {
+        if ((item.quantity + change) === 0) {
+          this.db.object('/shopping-carts/' + cartId + '/items/' + product.key).remove();
+          return;
+        }
+        this.item = this.db.object('/shopping-carts/' + cartId + '/items/' + id).update({
+          title: product.title,
+          imageUrl: product.imageUrl,
+          price: product.price,
+          quantity: change
+        });
+      }
+      else this.item = this.db.object('/shopping-carts/' + cartId + '/items/' + id).set({
+        title: product.title,
+        imageUrl: product.imageUrl,
+        price: product.price,
+        quantity: change
       });
 
     });

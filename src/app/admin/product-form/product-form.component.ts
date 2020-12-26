@@ -32,6 +32,7 @@ export class ProductFormComponent {
 
     if (this.id) {
       this.productService.update(this.id, this.product);
+      console.log(this.product.title);
     }
     else {
       this.productService.create(product);

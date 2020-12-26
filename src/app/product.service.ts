@@ -29,6 +29,7 @@ export class ProductService {
 
   get(id) {
     this.prod = this.db.object('/products/' + id).valueChanges();
+    //console.log("xxx" + this.prod.key);
     return this.prod;
   }
 

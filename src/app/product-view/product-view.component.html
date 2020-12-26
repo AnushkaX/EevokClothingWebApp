@@ -75,6 +75,7 @@
 <!-- <link href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
 <script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/js/bootstrap.min.js"></script>
 <script src="//code.jquery.com/jquery-1.11.1.min.js"></script> -->
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -93,62 +94,70 @@
     <div class="container">
         <div class="card">
             <div class="container-fliud">
-                <div class="wrapper row containerx">
-                    <div class="preview col-md-6">
-                        <div class="preview-pic tab-content">
-                            <div class="tab-pane active card" id="pic-1"><img [src]="product.imageUrl" /></div>
-                            <div class="tab-pane" id="pic-2"><img src="http://placekitten.com/400/252" /></div>
-                            <div class="tab-pane" id="pic-3"><img src="http://placekitten.com/400/252" /></div>
-                            <div class="tab-pane" id="pic-4"><img src="http://placekitten.com/400/252" /></div>
-                            <div class="tab-pane" id="pic-5"><img src="http://placekitten.com/400/252" /></div>
-                        </div>
-                        <ul class="preview-thumbnail nav nav-tabs">
-                            <!-- <li class="active"><a data-target="#pic-1" data-toggle="tab"><img
-                                        src="http://placekitten.com/200/126" /></a></li>
-                            <li><a data-target="#pic-2" data-toggle="tab"><img
-                                        src="http://placekitten.com/200/126" /></a></li>
-                            <li><a data-target="#pic-3" data-toggle="tab"><img
-                                        src="http://placekitten.com/200/126" /></a></li>
-                            <li><a data-target="#pic-4" data-toggle="tab"><img
-                                        src="http://placekitten.com/200/126" /></a></li>
-                            <li><a data-target="#pic-5" data-toggle="tab"><img
-                                        src="http://placekitten.com/200/126" /></a></li> -->
-                        </ul>
-                    </div>
-                    <div class="details col-md-6">
-                        <h3 class="product-title">{{ product.title }}</h3>
-                        <p class="product-description">{{ product.description }}</p>
-                        <h4 class="price">Price: <span>{{ product.price | currency: 'Rs. ' : true }}</span></h4>
-                        <div class="action">
-                            <div class="form-group">
-                                <label for="exampleFormControlSelect1">Select Size</label>
-                                <select class="form-control" id="exampleFormControlSelect1">
-                                    <option>XS</option>
-                                    <option>S</option>
-                                    <option>M</option>
-                                    <option>L</option>
-                                    <option>XL</option>
-                                    <option>XXL</option>
-                                </select>
+                <form #f="ngForm" (ngSubmit)="addToCart()">
+                    <div class="wrapper row containerx">
+                        <div class="preview col-md-6">
+                            <div class="preview-pic tab-content">
+                                <div class="tab-pane active card" id="pic-1"><img [src]="product.imageUrl" /></div>
+                                <div class="tab-pane" id="pic-2"><img src="http://placekitten.com/400/252" /></div>
+                                <div class="tab-pane" id="pic-3"><img src="http://placekitten.com/400/252" /></div>
+                                <div class="tab-pane" id="pic-4"><img src="http://placekitten.com/400/252" /></div>
+                                <div class="tab-pane" id="pic-5"><img src="http://placekitten.com/400/252" /></div>
                             </div>
-                            <div class="form-group">
-                                <label for="exampleFormControlSelect1">Select Quantity</label>
-                                <select class="form-control" id="exampleFormControlSelect1">
-                                    <option>1</option>
-                                    <option>2</option>
-                                    <option>3</option>
-                                    <option>4</option>
-                                    <option>5</option>
-                                </select>
+                            <ul class="preview-thumbnail nav nav-tabs">
+                                <!-- <li class="active"><a data-target="#pic-1" data-toggle="tab"><img
+                                            src="http://placekitten.com/200/126" /></a></li>
+                                <li><a data-target="#pic-2" data-toggle="tab"><img
+                                            src="http://placekitten.com/200/126" /></a></li>
+                                <li><a data-target="#pic-3" data-toggle="tab"><img
+                                            src="http://placekitten.com/200/126" /></a></li>
+                                <li><a data-target="#pic-4" data-toggle="tab"><img
+                                            src="http://placekitten.com/200/126" /></a></li>
+                                <li><a data-target="#pic-5" data-toggle="tab"><img
+                                            src="http://placekitten.com/200/126" /></a></li> -->
+                            </ul>
+                        </div>
+                        <div class="details col-md-6">
+                            <h3 class="product-title">{{ product.title }}</h3>
+                            <p class="product-description">{{ product.description }}</p>
+                            <h4 class="price">Price: <span>{{ product.price | currency: 'Rs. ' : true }}</span></h4>
+                            <div class="action">
+                                <div class="form-group">
+                                    <label for="size">Select Size</label>
+                                    <select #size="ngModel" [(ngModel)]="sizeOf" class="form-control" name="size" id="size" required>
+                                        <option value="xs">XS</option>
+                                        <option value="s">S</option>
+                                        <option value="m">M</option>
+                                        <option value="l">L</option>
+                                        <option value="xl">XL</option>
+                                        <option value="xxl">XXL</option>
+                                    </select>
+                                    <div class="alert alert-danger" *ngIf="size.touched && size.invalid">
+                                        Size is required!
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label for="exampleFormControlSelect1">Select Quantity</label>
+                                    <select #quantity="ngModel" [(ngModel)]="qty" name="quantity" class="form-control" id="quantity" required>
+                                        <option value=1>1</option>
+                                        <option value=2>2</option>
+                                        <option value=3>3</option>
+                                        <option value=4>4</option>
+                                        <option value=5>5</option>
+                                    </select>
+                                    <div class="alert alert-danger" *ngIf="quantity.touched && quantity.invalid">
+                                        Quantity is required!
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="action">
+                                <button class="btn add-to-cart btn btn-default" click="addToCart()" type="submit">Add to cart</button>
+                                <button class="like btn btn-default" type="button"><span
+                                        class="fa fa-heart"></span></button>
                             </div>
                         </div>
-                        <div class="action">
-                            <button class="btn add-to-cart btn btn-default" type="button">Add to cart</button>
-                            <button class="like btn btn-default" type="button"><span
-                                    class="fa fa-heart"></span></button>
-                        </div>
                     </div>
-                </div>
+                </form>
             </div>
         </div>
     </div>
