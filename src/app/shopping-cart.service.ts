@@ -1,4 +1,3 @@
-import { async } from '@angular/core/testing';
 import { Observable } from 'rxjs/observable';
 import { ShoppingCart } from './models/shopping-cart';
 import { Product } from './models/product';
@@ -68,7 +67,7 @@ export class ShoppingCartService {
 
   async updateItem1(id: string, product: Product, change: number, size: string) {
     let cartId = await this.getOrCreateCartId();
-    this.item = this.db.object('/shopping-carts/' + cartId + '/items/' + product.key + size).valueChanges();
+    this.item = this.db.object('/shopping-carts/' + cartId + '/items/' + product.key).valueChanges();
 
     this.item.take(1).subscribe(item => {
       console.log(size);

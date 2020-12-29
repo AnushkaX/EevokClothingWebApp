@@ -18,6 +18,7 @@ import { CustomFormsModule } from 'ng2-validation';
 
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { CarouselModule } from 'ngx-owl-carousel-o';
+import { FacebookModule } from 'ngx-facebook';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -92,7 +93,8 @@ import { ProductViewComponent } from './product-view/product-view.component';
     FormsModule,
     CustomFormsModule,
     CarouselModule,
-    BrowserAnimationsModule
+    BrowserAnimationsModule,
+    FacebookModule.forRoot()
   ],
   providers: [
     AuthService,
