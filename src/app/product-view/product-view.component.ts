@@ -34,7 +34,7 @@ export class ProductViewComponent implements OnInit {
   addToCart() {
     let qty : number = +this.qty;
     // this.cartService.addToCart(this.product);
-    this.cartService.addToCart1(this.id, this.product, qty);
+    this.cartService.addToCart1(this.id, this.product, qty, this.sizeOf);
     console.log(this.product.category);
   }
 
