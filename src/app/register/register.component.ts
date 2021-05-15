@@ -12,14 +12,14 @@ export class RegisterComponent implements OnInit {
 
   constructor(private auth: AuthService) { }
 
-  ngOnInit(): void {
+  ngOnInit() {
     this.auth.eventAuthError$.subscribe(data => {
       this.authError = data;
-    })
+    });
   }
 
-  createUser(form) {
-    this.auth.createUser(form.value);
+  createUser(frm) {
+    console.log("arrived here");
+    this.auth.createUser(frm.value);
   }
-
 }

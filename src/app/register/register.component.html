@@ -5,6 +5,9 @@
       </div>
       <div class="row clearfix">
         <div class="">
+            <!-- <div>
+                {{ authError?.message}}
+            </div> -->
           <form #userRegForm="ngForm" (ngSubmit)="createUser(userRegForm)">
             <div class="row clearfix">
               <div class="col_half">
@@ -27,8 +30,10 @@
               <div class="input_field"> <span><i aria-hidden="true" class="fa fa-lock"></i></span>
                 <input ngModel #passwordc="ngModel" type="password" name="passwordc" placeholder="Re-type Password" required />
               </div>
-            <input class="button" type="submit" value="Register" />
-            <input class="button" type="submit" value="Sign In" />
+              <div class="col-md-12">
+                <button class="btn btn-primary" type="submit">Register</button>
+              </div>
+            <input class="button" routerLink="/login" value="Sign In" />
           </form>
         </div>
       </div>

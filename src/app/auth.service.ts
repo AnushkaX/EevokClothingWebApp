@@ -1,6 +1,7 @@
+import { AngularFireDatabase } from 'angularfire2/database';
 import { UserService } from './user.service';
 import { AppUser } from './models/app-user';
-import { BehaviorSubject, Observable } from 'rxjs';
+import { Observable, BehaviorSubject } from 'rxjs';
 import { Injectable } from '@angular/core';
 import { AngularFireAuth } from 'angularfire2/auth';
 import * as firebase from 'firebase';
@@ -8,45 +9,20 @@ import { switchMap } from 'rxjs/operators';
 import 'rxjs/add/observable/of';
 import { ActivatedRoute } from '@angular/router';
 import { Router } from "@angular/router";
-import { AngularFirestore } from '@angular/fire/firestore';
 
 @Injectable({
   providedIn: 'root'
 })
 export class AuthService {
-  user$: Observable<firebase.User>
+  user$: Observable<firebase.User>;
 
   private eventAuthError = new BehaviorSubject<string>("");
   eventAuthError$ = this.eventAuthError.asObservable();
+
   newUser: any;
 
-  constructor(private router: Router, private userService: UserService, private afAuth: AngularFireAuth, private route: ActivatedRoute, private db: AngularFirestore) {
+  constructor(private router: Router, private userService: UserService, private afAuth: AngularFireAuth, private route: ActivatedRoute, private db: AngularFireDatabase) {
     this.user$ = afAuth.authState;
-  }
-
-  createUser(user) {
-    this.afAuth.auth.createUserWithEmailAndPassword(user.email, user.password).then(userCredential => {
-      this.newUser = user;
-
-      userCredential.user.updateProfile({
-        displayName: user.firstName + " " + user.lastName
-      });
-
-      this.insertUserData(userCredential).then(()=> {
-        this.router.navigate(['/home']);
-      })
-
-    }).catch(error => {
-      this.eventAuthError.next(error);
-    })
-  }
-
-  insertUserData(userCredential: firebase.auth.UserCredential){
-    return this.db.doc(`Users/${userCredential.user.uid}`).set({
-      email: this.newUser.email,
-      firstName: this.newUser.firstName,
-      lastName: this.newUser.lastName,
-    })
   }
 
   login() {
@@ -70,6 +46,36 @@ export class AuthService {
       return Observable.of(null);
     });
 
+  }
+
+  createUser(user) {
+    console.log("arrived here2");
+    this.afAuth.auth.createUserWithEmailAndPassword(user.email, user.password)
+    .then(userCredential => {
+      this.newUser = user;
+      console.log("arrived here3");
+      userCredential.user.updateProfile({
+        displayName: user.firstName + " " + user.lastName
+      });
+
+      this.insertUserData(userCredential)
+      .then(() => {
+        this.router.navigate(['/']);
+      });
+    }).catch(error => {
+      this.eventAuthError.next(error);
+    })
+  }
+
+  insertUserData(userCredential: firebase.auth.UserCredential) {
+    console.log("came here");
+    return this.db.object('/users/' + userCredential.user.uid).update({
+      firstName: this.newUser.firstName,
+      lastName: this.newUser.lastName,
+      name: this.newUser.firstName + " " + this.newUser.lastName,
+      email: this.newUser.email,
+      role: 'user'
+    });
   }
 
 } 
