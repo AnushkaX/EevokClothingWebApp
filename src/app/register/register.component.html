@@ -5,9 +5,11 @@
       </div>
       <div class="row clearfix">
         <div class="">
-            <!-- <div>
-                {{ authError?.message}}
-            </div> -->
+            <div class="row" *ngIf="authError">
+                <div class="col-12 alert alert-danger">
+                    {{authError?.message}}
+                </div>
+            </div>
           <form #userRegForm="ngForm" (ngSubmit)="createUser(userRegForm)">
             <div class="row clearfix">
               <div class="col_half">

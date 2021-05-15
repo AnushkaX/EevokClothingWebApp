@@ -34,6 +34,21 @@ export class AuthService {
     this.router.navigate(['/']);
   }
 
+  getUserState() {
+    return this.afAuth.authState;
+  }
+
+  signin(email: string, password: string) {
+    this.afAuth.auth.signInWithEmailAndPassword(email, password)
+    .catch(error => {
+      this.eventAuthError.next(error);
+    }).then((userCredential) => {
+      if(userCredential){
+        this.router.navigate(['/']);
+      }
+    });
+  }
+
   logout() {
     this.afAuth.auth.signOut();
     this.router.navigate(['/']);
@@ -49,11 +64,9 @@ export class AuthService {
   }
 
   createUser(user) {
-    console.log("arrived here2");
     this.afAuth.auth.createUserWithEmailAndPassword(user.email, user.password)
     .then(userCredential => {
       this.newUser = user;
-      console.log("arrived here3");
       userCredential.user.updateProfile({
         displayName: user.firstName + " " + user.lastName
       });
