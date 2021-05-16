@@ -1,4 +1,3 @@
-import { async } from '@angular/core/testing';
 import { Observable } from 'rxjs/observable';
 import { ShoppingCart } from './models/shopping-cart';
 import { Product } from './models/product';
@@ -29,8 +28,8 @@ export class ShoppingCartService {
     this.updateItem(product, 1);
   }
 
-  async addToCart1(id: string, product: Product, qty: number) {
-    this.updateItem1(id, product, qty);
+  async addToCart1(id: string, product: Product, qty: number, size: string) {
+    this.updateItem1(id, product, qty, size);
   }
 
   async removeFromCart(product: Product) {
@@ -66,30 +65,32 @@ export class ShoppingCartService {
     });
   }
 
-  async updateItem1(id: string, product: Product, change: number) {
+  async updateItem1(id: string, product: Product, change: number, size: string) {
     let cartId = await this.getOrCreateCartId();
     this.item = this.db.object('/shopping-carts/' + cartId + '/items/' + product.key).valueChanges();
 
     this.item.take(1).subscribe(item => {
-      //console.log(item.quantity);
+      console.log(size);
       
       if (item) {
         if ((item.quantity + change) === 0) {
-          this.db.object('/shopping-carts/' + cartId + '/items/' + product.key).remove();
+          this.db.object('/shopping-carts/' + cartId + '/items/' + product.key + size).remove();
           return;
         }
-        this.item = this.db.object('/shopping-carts/' + cartId + '/items/' + id).update({
+        this.item = this.db.object('/shopping-carts/' + cartId + '/items/' + id + size).update({
           title: product.title,
           imageUrl: product.imageUrl,
           price: product.price,
-          quantity: change
+          quantity: change,
+          size: size
         });
       }
-      else this.item = this.db.object('/shopping-carts/' + cartId + '/items/' + id).set({
+      else this.item = this.db.object('/shopping-carts/' + cartId + '/items/' + id + size).set({
         title: product.title,
         imageUrl: product.imageUrl,
         price: product.price,
-        quantity: change
+        quantity: change,
+        size: size
       });
 
     });

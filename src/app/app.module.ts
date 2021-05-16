@@ -18,6 +18,7 @@ import { CustomFormsModule } from 'ng2-validation';
 
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { CarouselModule } from 'ngx-owl-carousel-o';
+import { FacebookModule } from 'ngx-facebook';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -41,6 +42,7 @@ import { ProductQuantityComponent } from './product-quantity/product-quantity.co
 import { ShoppingCartSummaryComponent } from './shopping-cart-summary/shopping-cart-summary.component';
 import { ShippingFormComponent } from './shipping-form/shipping-form.component';
 import { ProductViewComponent } from './product-view/product-view.component';
+import { RegisterComponent } from './register/register.component';
 
 @NgModule({
   declarations: [
@@ -62,7 +64,8 @@ import { ProductViewComponent } from './product-view/product-view.component';
     ProductQuantityComponent,
     ShoppingCartSummaryComponent,
     ShippingFormComponent,
-    ProductViewComponent
+    ProductViewComponent,
+    RegisterComponent
   ],
   imports: [
     BrowserModule,
@@ -75,6 +78,7 @@ import { ProductViewComponent } from './product-view/product-view.component';
       { path: 'products', component: ProductsComponent },
       { path: 'shopping-cart', component: ShoppingCartComponent },
       { path: 'login', component: LoginComponent },
+      { path: 'register', component: RegisterComponent },
       { path: 'product-view', component: ProductViewComponent },
       { path: 'product-view/:id', component: ProductViewComponent },
 
@@ -92,7 +96,8 @@ import { ProductViewComponent } from './product-view/product-view.component';
     FormsModule,
     CustomFormsModule,
     CarouselModule,
-    BrowserAnimationsModule
+    BrowserAnimationsModule,
+    FacebookModule.forRoot()
   ],
   providers: [
     AuthService,

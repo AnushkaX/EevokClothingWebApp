@@ -10,6 +10,7 @@
             <tr>
                 <th></th>
                 <th>Product</th>
+                <th class="text-center" style="width: 230px;">Size</th>
                 <th class="text-center" style="width: 230px;">Quantity</th>
                 <th class="text-right" style="width: 200px;">Price</th>
             </tr>
@@ -22,6 +23,9 @@
                 <td>
                     {{ item.title }}
                 </td>
+                <td allign="center">
+                    {{ item.size }}
+                </td>
                 <td>
                     <product-quantity [product]="item" [shopping-cart]="cart"></product-quantity>
                 </td>
@@ -32,6 +36,7 @@
         </tbody>
         <tfoot>
             <tr>
+                <th></th>
                 <th></th>
                 <th></th>
                 <th></th>

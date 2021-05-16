@@ -125,12 +125,12 @@
                                 <div class="form-group">
                                     <label for="size">Select Size</label>
                                     <select #size="ngModel" [(ngModel)]="sizeOf" class="form-control" name="size" id="size" required>
-                                        <option value="xs">XS</option>
-                                        <option value="s">S</option>
-                                        <option value="m">M</option>
-                                        <option value="l">L</option>
-                                        <option value="xl">XL</option>
-                                        <option value="xxl">XXL</option>
+                                        <option value="XS">XS</option>
+                                        <option value="S">S</option>
+                                        <option value="M">M</option>
+                                        <option value="L">L</option>
+                                        <option value="XL">XL</option>
+                                        <option value="XXL">XXL</option>
                                     </select>
                                     <div class="alert alert-danger" *ngIf="size.touched && size.invalid">
                                         Size is required!
