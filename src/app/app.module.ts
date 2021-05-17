@@ -1,3 +1,4 @@
+import { RequestService } from './request.service';
 import { OrderService } from './order.service';
 import { ShoppingCartService } from './shopping-cart.service';
 import { ProductService } from './product.service';
@@ -13,8 +14,8 @@ import { NgModule } from '@angular/core';
 import { AngularFireModule } from 'angularfire2';
 import { AngularFireDatabaseModule } from 'angularfire2/database';
 import { AngularFireAuthModule } from 'angularfire2/auth';
+import { AngularFireStorageModule } from 'angularfire2/storage';
 import { CustomFormsModule } from 'ng2-validation';
-
 
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { CarouselModule } from 'ngx-owl-carousel-o';
@@ -43,6 +44,7 @@ import { ShoppingCartSummaryComponent } from './shopping-cart-summary/shopping-c
 import { ShippingFormComponent } from './shipping-form/shipping-form.component';
 import { ProductViewComponent } from './product-view/product-view.component';
 import { RegisterComponent } from './register/register.component';
+import { RequestComponent } from './request/request.component';
 
 @NgModule({
   declarations: [
@@ -65,13 +67,15 @@ import { RegisterComponent } from './register/register.component';
     ShoppingCartSummaryComponent,
     ShippingFormComponent,
     ProductViewComponent,
-    RegisterComponent
+    RegisterComponent,
+    RequestComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     AngularFireModule.initializeApp(environment.firebase),
     AngularFireDatabaseModule,
+    AngularFireStorageModule,
     AngularFireAuthModule,
     RouterModule.forRoot([
       { path: '', component: ProductsComponent },
@@ -85,6 +89,7 @@ import { RegisterComponent } from './register/register.component';
       { path: 'check-out', component: CheckOutComponent, canActivate: [AuthGuard] },
       { path: 'order-success/:id', component: OrderSuccessComponent, canActivate: [AuthGuard] },
       { path: 'my/orders', component: MyOrdersComponent, canActivate: [AuthGuard] },
+      { path: 'request', component: RequestComponent, canActivate: [AuthGuard] },
 
       { path: 'admin/products/new', component: ProductFormComponent, canActivate: [AuthGuard, AdminAuthGuard] },
       { path: 'admin/products/:id', component: ProductFormComponent, canActivate: [AuthGuard, AdminAuthGuard] },
@@ -107,7 +112,8 @@ import { RegisterComponent } from './register/register.component';
     CategoryService,
     ProductService,
     ShoppingCartService,
-    OrderService
+    OrderService,
+    RequestService
   ],
   bootstrap: [AppComponent]
 })
