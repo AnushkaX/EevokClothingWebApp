@@ -1,12 +1,19 @@
-<div class="container">
-    <div class="card">
-      <div class="card-header">
-        Request a Design
-      </div>
-      <div class="card-body">
-        <h5 class="card-title">Select a file for upload:</h5>
-        <input type="file" (change)="onUpload($event)"/>
-        <button type="submit" (click)="upload()">Upload</button>
-      </div>
+  <div class="container" id="container sign-in-container">
+    <div>
+        <form #loginForm="ngForm" (ngSubmit)="upload(loginForm)">
+            
+            <div>
+                <h1 style="margin:10px 0;">Request a Design</h1>
+            </div>
+            <span></span>
+            <span>Select an image of your design</span>
+            <input type="file" (change)="onUpload($event)"/>
+            
+            
+            <!-- <button type="submit" (click)="upload()">Upload</button> -->
+            <span>Enter you size and needed quantity in the description</span>
+			<input ngModel #description="ngModel" name="description" type="text" placeholder="Description" />
+			<button type="submit" >Request</button>
+		</form>
     </div>
   </div>

@@ -25,7 +25,7 @@ export class RequestComponent {
     this.selectedImage = event.target.files[0];
   }
 
-  upload() {
+  upload(form) {
     this.ref = this.storage.ref(this.selectedImage.name);
     var name = this.selectedImage.name;
     const fileRef = this.storage.ref(name);

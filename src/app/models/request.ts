@@ -1,6 +1,6 @@
-export class FileUpload {
+export class Request {
     key: string;
-    name: string;
+    description: string;
     url: string;
     file: File;
   
