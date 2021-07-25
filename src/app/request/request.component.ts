@@ -1,5 +1,3 @@
-import { Observable } from 'rxjs/observable';
-import { RequestService } from './../request.service';
 import { AngularFireStorage, AngularFireStorageReference, AngularFireUploadTask } from 'angularfire2/storage';
 import { finalize } from 'rxjs/operators';
 
