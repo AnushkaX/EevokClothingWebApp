@@ -1,5 +1,5 @@
 import { ShoppingCart } from './../models/shopping-cart';
-import { Observable } from 'rxjs/observable';
+import { Observable } from 'rxjs';
 import { ShoppingCartService } from './../shopping-cart.service';
 import { Subscription } from 'rxjs/Subscription';
 import { ProductService } from './../product.service';

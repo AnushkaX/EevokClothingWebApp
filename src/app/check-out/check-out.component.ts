@@ -1,6 +1,4 @@
-import { Observable } from 'rxjs/observable';
-
-import { Subscription } from 'rxjs/Subscription';
+import { Observable } from 'rxjs';
 import { ShoppingCart } from './../models/shopping-cart';
 import { Component, OnInit } from '@angular/core';
 import { ShoppingCartService } from '../shopping-cart.service';

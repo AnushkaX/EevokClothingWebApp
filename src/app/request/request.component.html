@@ -9,8 +9,6 @@
             <span>Select an image of your design</span>
             <input type="file" (change)="onUpload($event)"/>
             
-            
-            <!-- <button type="submit" (click)="upload()">Upload</button> -->
             <span>Enter you size and needed quantity in the description</span>
 			<input ngModel #description="ngModel" name="description" type="text" placeholder="Description" />
 			<button type="submit" >Request</button>
